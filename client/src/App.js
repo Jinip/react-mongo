@@ -1,8 +1,24 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
+import axios from 'axios';
 import './App.css';
 
 class App extends Component {
+  state = {
+    data: ""
+  };
+
+  componentDidMount(){
+    console.log("mounted");
+    axios.get("http://localhost:3001")
+      .then(res => {
+        this.setState({data: res.data});
+        console.log(this.state.data);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
   render() {
     return (
       <div className="App">
@@ -11,7 +27,7 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
+          {this.state.data}
         </p>
       </div>
     );
