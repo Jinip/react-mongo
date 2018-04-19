@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import axios from 'axios';
+import { Grid, Row, Col } from 'react-bootstrap'
+import 'bootstrap-css';
 import './App.css';
 
 class App extends Component {
@@ -9,11 +10,9 @@ class App extends Component {
   };
 
   componentDidMount(){
-    console.log("mounted");
     axios.get("http://localhost:3001")
       .then(res => {
         this.setState({data: res.data});
-        console.log(this.state.data);
       })
       .catch(err => {
         console.log(err);
@@ -21,14 +20,18 @@ class App extends Component {
   }
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          {this.state.data}
-        </p>
+      <div>
+        <Grid className="show-grid">
+          <Row >
+            <Col xs={2}>
+            </Col >
+            <Col className="App" xs={8}>
+              {this.state.data}
+            </Col>
+            <Col xs={2}>
+            </Col >
+          </Row>
+        </Grid>
       </div>
     );
   }
