@@ -21,11 +21,11 @@ class NavbarComponent extends Component {
     }
 
     logIn = () => {
-        this.toggleSigning();
         this.setState({isSignedIn: true});
     }
 
     logOut = () => {
+        //delete user data
         this.setState({isSignedIn: false});
     }
 
@@ -33,12 +33,12 @@ class NavbarComponent extends Component {
         const userToggleButton = this.state.isSignedIn ? (
             <button onClick={this.logOut}>Sign Out</button>
         ) : (
-            <button onClick={this.logIn}>Sign In</button>
+            <button onClick={this.toggleSigning}>Sign In</button>
         )
 
         return (
             <div>
-                <Navbar>
+                <Navbar fixedTop="true">
                     <Nav>
                         <NavItem eventKey={1} onClick={this.navigateToAnchor(this.props.homeY)}>
                             Home
@@ -55,7 +55,7 @@ class NavbarComponent extends Component {
                         </NavItem>
                     </Nav>
                 </Navbar>
-                { this.state.isSigning && <UserAuthLightbox isSignedIn={this.isSignedIn} isSigning={this.state.isSigning} toggleSigning={this.toggleSigning} logIn={this.logIn} logOut={this.logOut}/> }
+                { this.state.isSigning && <UserAuthLightbox toggleSigning={this.toggleSigning} logIn={this.logIn} logOut={this.logOut}/> }
             </div>
         );
     }

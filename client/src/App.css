@@ -30,3 +30,7 @@
 .tall{
   height: 1000px;
 }
+
+body {
+  margin-top: 55px;
+}
