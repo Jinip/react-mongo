@@ -22,7 +22,7 @@ class NavbarComponent extends Component {
 
     logIn = () => {
         this.toggleSigning();
-        //this.setState({isSignedIn: true});
+        this.setState({isSignedIn: true});
     }
 
     logOut = () => {
@@ -55,7 +55,7 @@ class NavbarComponent extends Component {
                         </NavItem>
                     </Nav>
                 </Navbar>
-                { this.state.isSigning && <UserAuthLightbox isSigning={this.state.isSigning} toggleSigning={this.toggleSigning} /> }
+                { this.state.isSigning && <UserAuthLightbox isSignedIn={this.isSignedIn} isSigning={this.state.isSigning} toggleSigning={this.toggleSigning} logIn={this.logIn} logOut={this.logOut}/> }
             </div>
         );
     }
