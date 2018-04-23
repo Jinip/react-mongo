@@ -19,11 +19,11 @@ class App extends Component {
     const home = ReactDOM.findDOMNode(this.refs.home);
     const about = ReactDOM.findDOMNode(this.refs.about);
     const contact = ReactDOM.findDOMNode(this.refs.contact);
-    console.log(home.offsetTop);
-    this.setState({homeY: 157});
+
+    this.setState({homeY: home.offsetTop});
     this.setState({aboutY: about.offsetTop});
     this.setState({contactY: contact.offsetTop});
-    console.log(this.state);
+
     axios.get("http://localhost:3001")
       .then(res => {
         this.setState({data: res.data});
