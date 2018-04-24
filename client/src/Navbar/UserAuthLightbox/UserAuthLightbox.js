@@ -6,7 +6,7 @@ import 'bootstrap-css';
 
 class UserAuthLightbox extends Component {
     state = {
-        displaySignIn: true
+        displaySignIn: true,
     }
 
     toggleFormContext = () => {
@@ -17,11 +17,11 @@ class UserAuthLightbox extends Component {
         return (
             <Modal show={true}>
                 {this.state.displaySignIn ? (
-                    <SignInForm toggleFormContext={this.toggleFormContext}/>
+                    <SignInForm logIn={this.props.logIn} toggleFormContext={this.toggleFormContext} toggleSigning={this.props.toggleSigning} />
                 ) : (
-                    <SignUpForm toggleFormContext={this.toggleFormContext}/>
+                    <SignUpForm logIn={this.props.logIn} toggleFormContext={this.toggleFormContext} toggleSigning={this.props.toggleSigning} />
                 )}
-            <Button onClick={this.props.toggleSigning}>Close</Button>
+            <button type="button" onClick={this.props.toggleSigning}>Close</button>
         </Modal>
         )
     }
