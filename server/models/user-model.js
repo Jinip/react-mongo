@@ -6,6 +6,9 @@ let UserSchema = new Schema({
     },
     password: {
         type: String
+    },
+    success: {
+        type: Boolean
     }
 })
 

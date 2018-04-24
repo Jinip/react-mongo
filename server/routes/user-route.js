@@ -13,7 +13,6 @@ router.route("/")
     })
 
     .post((req, res) => {
-        console.log(req.body);
         let user = new User(req.body);
 
         user.save((err, newUser) => {
@@ -23,4 +22,19 @@ router.route("/")
         })
     })
 
+router.route("/:username")
+    .get((req, res) => {
+        User.findOne({username: req.params.username}, (err, user) => {
+            if (err) return res.send(err);
+
+            return res.send(user)
+        })
+    })
+    .delete((req, res) =>{
+        User.deleteOne({username: req.params.username}, (err, deletedUser) => {
+            if (err) return res.send(err);
+
+            return res.send({message: "success" });
+        })
+    })
 export default router;
