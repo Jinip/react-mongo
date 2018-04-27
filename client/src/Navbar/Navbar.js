@@ -6,7 +6,12 @@ import 'bootstrap-css';
 class NavbarComponent extends Component {
     state = {
         isSignedIn: false,
-        isSigning: false
+        isSigning: false,
+        user: ""
+    }
+
+    componentDidMount(){
+        this.setState({user: localStorage.getItem("danceUser")})
     }
 
     navigateToAnchor = (y) => {
@@ -21,11 +26,13 @@ class NavbarComponent extends Component {
     }
 
     logIn = () => {
+        this.setState({user: localStorage.getItem("danceUser")})
         this.setState({isSignedIn: true});
     }
 
     logOut = () => {
-        //delete user data
+        localStorage.removeItem("danceUser");
+        this.setState({user: ""});
         this.setState({isSignedIn: false});
     }
 
@@ -51,7 +58,7 @@ class NavbarComponent extends Component {
                         </NavItem>
 
                         <NavItem eventKey={4}>
-                            {userToggleButton}
+                            {this.state.user && <p>Welcome, {this.state.user}</p>} {userToggleButton}
                         </NavItem>
                     </Nav>
                 </Navbar>

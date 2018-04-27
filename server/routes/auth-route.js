@@ -8,12 +8,15 @@ router.route("/signin/")
         User.findOne({username: req.body.username}, (err, user) => {
             if (err) return res.send(err);
 
-            if (req.body.password == user.password){
-                return res.send(user);
+            if (user) {
+                if (req.body.password == user.password){
+                    return res.send(user);
+                } else {
+                    return res.send({message: "Username or password is incorrect"});
+                }
             } else {
                 return res.send({message: "Username or password is incorrect"});
             }
-            
         })
     })
 
@@ -21,7 +24,7 @@ router.route("/signup/")
     .post((req, res) => {
         User.findOne({username: req.body.username}, (err, user) => {
             if (err) return res.send(err);
-
+            
             if (user) {
                 return res.send({message: "username already in use, please select another"});
             } else {

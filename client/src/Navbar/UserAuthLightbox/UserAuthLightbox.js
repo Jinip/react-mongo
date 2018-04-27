@@ -21,7 +21,7 @@ class UserAuthLightbox extends Component {
                 ) : (
                     <SignUpForm logIn={this.props.logIn} toggleFormContext={this.toggleFormContext} toggleSigning={this.props.toggleSigning} />
                 )}
-            <button type="button" onClick={this.props.toggleSigning}>Close</button>
+            <Button onClick={this.props.toggleSigning}>Close</Button>
         </Modal>
         )
     }
